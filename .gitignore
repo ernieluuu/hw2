@@ -1,3 +1,8 @@
 *.o
 amazon
 hw2_tests/
+.vs/
+hw2.sln
+hw2.vcxproj
+hw2.vcxproj.filters
+hw2.vcxproj.user
