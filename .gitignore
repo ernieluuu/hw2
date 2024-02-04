@@ -2,6 +2,7 @@
 amazon
 hw2_tests/
 .vs/
+x64/
 hw2.sln
 hw2.vcxproj
 hw2.vcxproj.filters
