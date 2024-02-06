@@ -13,20 +13,43 @@
 template <typename T>
 std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 {
+	// find() tests membership in log(n) time!
 
+	set<T> intersection;
+	
+	for (set<T>::iterator it = s1.begin(); it != s1.end(); ++it)
+	{
+		T curr_item = *it;
+		if (s2.find(curr_item) == s2.end())
+		{
+			continue;
+		}
+		else
+		{
+			intersection.insert(*it);
+			// cout << *it << " ";
+		}
+	}
 
-
-
-
+	return intersection;
 }
 template <typename T>
 std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
 {
+	// pushing back all of s1 + s2 should work cuz the set<> handles duplicates
+	set<T> setUnion;
 
+	for (set<T>::iterator it = s1.begin(); it != s1.end(); ++it)
+	{
+		setUnion.insert(*it);
+	}
 
+	for (set<T>::iterator it = s2.begin(); it != s2.end(); ++it)
+	{
+		setUnion.insert(*it);
+	}
 
-
-
+	return setUnion;
 }
 
 /***********************************************/
