@@ -13,11 +13,9 @@ Book::~Book()
 {
 }
 
-// # Finish this code
 std::set<std::string> Book::keywords() const
 {
 	std::set<std::string> keywords;
-	/*implement 'toLower()'*/
 	keywords.insert(convertToLowercase(this->author_));
 	keywords.insert(convertToLowercase(this->ISBN_));
 	keywords.insert(convertToLowercase(this->name_));
@@ -43,7 +41,6 @@ std::string Book::displayString() const
 						std::to_string(this->qty_) + " left.";
 }
 
-// # TODO
 void Book::dump(std::ostream& os) const
 {
 	/*outputs:
@@ -57,8 +54,8 @@ void Book::dump(std::ostream& os) const
 	os << this->name_ << std::endl;
 	os << this->price_ << std::endl;
 	os << this->qty_ << std::endl;
-	os << this->ISBN_ << std::endl;
 	os << this->author_ << std::endl;
+	os << this->ISBN_ << std::endl;
 }
 
 /* choosing pass by copy + return instead of pass by reference so
