@@ -16,8 +16,8 @@ Movie::~Movie()
 std::set<std::string> Movie::keywords() const
 {
 	std::set<std::string> keywords;
-	keywords.insert(convertToLowercase(this->size_));
-	keywords.insert(convertToLowercase(this->brand_));
+	keywords.insert(convertToLowercase(this->genre_));
+	keywords.insert(convertToLowercase(this->rating_));
 	keywords.insert(convertToLowercase(this->name_));
 	return keywords;
 }
