@@ -1,19 +1,19 @@
-#include "clothing.h"
+#include "movie.h"
 #include <cctype>
 
 // constructor
-Clothing::Clothing(const std::string category, const std::string name, double price, int qty,
-	const std::string size, const std::string brand) : Product(category, name, price, qty),
-	size_(size), brand_(brand)
+Movie::Movie(const std::string category, const std::string name, double price, int qty,
+	const std::string genre, const std::string rating) : Product(category, name, price, qty),
+	genre_(genre), rating_(rating)
 {
 }
 
 // destructor
-Clothing::~Clothing()
+Movie::~Movie()
 {
 }
 
-std::set<std::string> Clothing::keywords() const
+std::set<std::string> Movie::keywords() const
 {
 	std::set<std::string> keywords;
 	keywords.insert(convertToLowercase(this->size_));
@@ -22,17 +22,17 @@ std::set<std::string> Clothing::keywords() const
 	return keywords;
 }
 
-std::string Clothing::displayString() const
+std::string Movie::displayString() const
 {
-	std::string clothingString;
+	std::string movieString;
 
-	return clothingString = this->name_ + "\n" + "Author: " +
-		this->size_ + " ISBN : " + this->brand_
+	return movieString = this->name_ + "\n" + "Author: " +
+		this->genre_ + " ISBN : " + this->rating_
 		+ "\n" + std::to_string(this->price_) + " " +
 		std::to_string(this->qty_) + " left.";
 }
 
-void Clothing::dump(std::ostream& os) const
+void Movie::dump(std::ostream& os) const
 {
 	/*outputs:
 	product_category
@@ -41,18 +41,18 @@ void Clothing::dump(std::ostream& os) const
 	quantity
 	category-specific-info*/
 	//os << category_ << "\n" << name_ << "\n" << price_ << "\n" << qty_ << std::endl;
-	os << "clothing" << std::endl;
+	os << "movie" << std::endl;
 	os << this->name_ << std::endl;
 	os << this->price_ << std::endl;
 	os << this->qty_ << std::endl;
-	os << this->size_ << std::endl;
-	os << this->brand_ << std::endl;
+	os << this->genre_ << std::endl;
+	os << this->rating_ << std::endl;
 }
 
 /* choosing pass by copy + return instead of pass by reference so
    that we can preserve the case of the original author + title, etc.
 */
-std::string Clothing::convertToLowercase(std::string word) const
+std::string Movie::convertToLowercase(std::string word) const
 {
 	std::string lowercaseWord = word;
 	for (int i = 0; word[i] != '\0'; i++)
