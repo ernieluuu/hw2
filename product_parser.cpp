@@ -130,8 +130,14 @@ std::string ProductBookParser::categoryID()
  */
 Product* ProductBookParser::makeProduct()
 {
+ /**
+ * Dynamically allocates a specific product type from the data
+ *  parsed and stored in the specific product parser
+ */
+    Product* newBook = new Book("book", prodName_, price_, qty_, author_, isbn_);
 
-
+    /*a book can be returned as a product but not the other way around*/
+    return newBook;
 }
 
 
