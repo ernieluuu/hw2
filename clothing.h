@@ -2,7 +2,7 @@
 #define CLOTHING_H
 #include "product.h"
 
-class Clothing : Product {
+class Clothing : public Product {
 public:
     // constructor
     Clothing(const std::string category, const std::string name, double price, int qty,

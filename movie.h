@@ -2,7 +2,7 @@
 #define MOVIE_H
 #include "product.h"
 
-class Movie : Product {
+class Movie : public Product {
 public:
     // constructor
     Movie(const std::string category, const std::string name, double price, int qty,
