@@ -40,6 +40,7 @@ public:
     std::string getName() const;
     int getQty() const;
     void subtractQty(int num);
+    std::string getCategory() const { return category_; } // my added getter function
 
 protected:
     std::string name_;

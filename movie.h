@@ -35,6 +35,10 @@ public:
     /*helper function that allows us to have a common case (lowercase) throughout the program*/
     std::string convertToLowercase(std::string word) const;
 
+    // getter functions
+    std::string getGenre() const { return genre_; }
+    std::string getRating() const { return rating_; }
+
 private:
     std::string genre_;
     std::string rating_;

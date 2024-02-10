@@ -45,12 +45,47 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 	}
 }
 
+/**
+ * Reproduce the database file from the current Products and User values
+ */
 void MyDataStore::dump(std::ostream& ofile)
 {
-	/*for item in items, ->dump() seems like the call, unless they want a different format.*/
+	std::set<Product*>::iterator it;
+	std::set<User*>::iterator it2;
 
-	// iterate through all the Products
-	// ofile << item->dump()
+	ofile << "<products>" << "\n";
+
+	for (it = productSet_.begin(); it != productSet_.end(); ++it)
+	{
+		//(*it)->dump(ofile);
+		ofile << (*it)->getCategory() << "\n" << (*it)->getName() << "\n"
+			<< (*it)->getPrice() << "\n" << (*it)->getQty() << "\n";
+
+		std::string category = (*it)->getCategory();
+		if (category == "book") {
+			ofile << (*it)->getISBN() << "\n" << (*it)->getAuthor() << "\n";
+		}
+		else if (category == "clothing") {
+			ofile << (*it)->getSize() << "\n" << (*it)->getBrand() << "\n";
+		}
+		else if (category == "movie") {
+			ofile << (*it)->getGenre() << "\n" << (*it)->getRating() << "\n";
+		}
+	}
+
+	ofile << "</products>" << "\n";
+
+	ofile << "<users>" << "\n";
+
+	for (it2 = userSet_.begin(); it2 != userSet_.end(); ++it2)
+	{
+		ofile << (*it2)->getName() << " " << std::fixed << std::setprecision(2)
+			<< (*it2)->getBalance() << " " << (*it2)->getType() << "\n";
+	}
+
+	ofile << "</users>" << "\n";
+
+	return;
 
 }
 
