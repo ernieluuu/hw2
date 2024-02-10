@@ -24,12 +24,18 @@ std::set<std::string> Clothing::keywords() const
 
 std::string Clothing::displayString() const
 {
-	std::string clothingString;
+	//std::string clothingString;
+	//return clothingString = this->name_ + "\n" + "Size: " +
+	//	this->size_ + " Brand: " + this->brand_
+	//	+ "\n" + std::to_string(this->price_) + " " +
+	//	std::to_string(this->qty_) + " left.";
 
-	return clothingString = this->name_ + "\n" + "Author: " +
-		this->size_ + " ISBN : " + this->brand_
-		+ "\n" + std::to_string(this->price_) + " " +
-		std::to_string(this->qty_) + " left.";
+	std::ostringstream oss;
+	oss << this->name_ << "\n"
+		<< "Size: " << this->size_ << " Brand: " << this->brand_ << "\n"
+		<< std::fixed << std::setprecision(2) << this->price_ << " " << this->qty_ << " left." << std::endl;
+
+	return oss.str();
 }
 
 void Clothing::dump(std::ostream& os) const

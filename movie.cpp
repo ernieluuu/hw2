@@ -24,12 +24,18 @@ std::set<std::string> Movie::keywords() const
 
 std::string Movie::displayString() const
 {
-	std::string movieString;
+	//std::string movieString;
+	//return movieString = this->name_ + "\n" + "Genre: " +
+	//	this->genre_ + " rating : " + this->rating_
+	//	+ "\n" + std::to_string(this->price_) + " " +
+	//	std::to_string(this->qty_) + " left.";
 
-	return movieString = this->name_ + "\n" + "Author: " +
-		this->genre_ + " ISBN : " + this->rating_
-		+ "\n" + std::to_string(this->price_) + " " +
-		std::to_string(this->qty_) + " left.";
+	std::ostringstream oss;
+	oss << this->name_ << "\n"
+		<< "Genre: " << this->genre_ << " Rating: " << this->rating_ << "\n"
+		<< std::fixed << std::setprecision(2) << this->price_ << " " << this->qty_ << " left." << std::endl;
+
+	return oss.str();
 }
 
 void Movie::dump(std::ostream& os) const

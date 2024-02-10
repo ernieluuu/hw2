@@ -18,6 +18,10 @@ public:
     void deductAmount(double amt);
     virtual void dump(std::ostream& os);
 
+    // added getter functions
+    std::string getName() const { return name_; }
+    double getBalance() const { return balance_; }
+
 private:
     std::string name_;
     double balance_;

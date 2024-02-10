@@ -9,6 +9,7 @@
 #include "db_parser.h"
 #include "product_parser.h"
 #include "util.h"
+#include "myDataStore.h"
 
 using namespace std;
 struct ProdNameSorter {
@@ -29,7 +30,7 @@ int main(int argc, char* argv[])
      * Declare your derived DataStore object here replacing
      *  DataStore type to your derived type
      ****************/
-    DataStore ds;
+    MyDataStore ds;
 
 
 
@@ -101,7 +102,7 @@ int main(int argc, char* argv[])
             }
 	    /* Add support for other commands here */
 
-
+            // ADD TO CART
 
 
             else {
@@ -128,3 +129,22 @@ void displayProducts(vector<Product*>& hits)
         resultNo++;
     }
 }
+
+
+/*
+
+add to cart
+cin the username
+cin the hit index
+pass username, hit index, hits (which is a Product* vector)
+--> hits is outside the while loop and will be updated by the other functions
+(unrelated to what I've implemented)
+
+Then,
+just add to the Product* queue associated with the username
+use the username as a key to find the product* queue
+then go to that (-->second?) and push_back.
+
+
+
+*/

@@ -33,12 +33,18 @@ std::string Book::displayString() const
 
 	*/
 
-	std::string bookString;
+	//std::string bookString;
+	//return bookString = this->name_ + "\n" +  "Author: " +
+	//					this->author_ + " ISBN: " + this ->ISBN_
+	//					+ "\n" + std::to_string(this->price_) + " " + 
+	//					std::to_string(this->qty_) + " left.";
 
-	return bookString = this->name_ + "\n" +  "Author: " +
-						this->author_ + " ISBN : " + this ->ISBN_
-						+ "\n" + std::to_string(this->price_) + " " + 
-						std::to_string(this->qty_) + " left.";
+	std::ostringstream oss;
+	oss << this->name_ << "\n"
+		<< "Author: " << this->author_ << " ISBN: " << this->ISBN_ << "\n"
+		<< std::fixed << std::setprecision(2) << this->price_ << " " << this->qty_ << " left." << std::endl;
+	
+	return oss.str();
 }
 
 void Book::dump(std::ostream& os) const
