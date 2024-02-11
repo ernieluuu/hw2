@@ -37,14 +37,14 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 	declaration:
 	std::map<std::set<std::string>, Product*> Products_;
 	*/
-
-	/*search results, initialized to the set of all products*/
-	std::set<Product*> results = productSet_;
+	std::set<Product*> results;
 	std::map<std::set<std::string>, Product*>::iterator it; // iterates through products
 	std::vector<std::string>::iterator terms_it; // terms iterator
 
 	if (type == 0)
 	{
+		/*search results, initialized to the set of all products*/
+		std::set<Product*> results = productSet_;
 		/*for every term
 			can find it in curr_product?
 				if yes, then push the product (it->second) into my vector
