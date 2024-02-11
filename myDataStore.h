@@ -21,6 +21,8 @@ menu options. You should not modify datastore.h.*/
 
 class MyDataStore : public DataStore {
 
+public:
+
     // constructor FIXME: INITIALIZE it
     MyDataStore() { }
 
@@ -62,12 +64,16 @@ private:
 
 /*the set of users*/
 std::set<User*> userSet_;
+
 /*maps username onto the user*/
 std::map<std::string, User*> Users_;
+
 /*pure product set*/
 std::set<Product*> productSet_;
+
 /*product map accessible by keywords*/
 std::map<std::set<std::string>, Product*> Products_;
+
 /*where string is the username and there is a queue of Products.*/
 std::map<std::string, std::queue<Product*>> usersCart_;
 

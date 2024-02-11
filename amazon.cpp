@@ -103,7 +103,23 @@ int main(int argc, char* argv[])
 	    /* Add support for other commands here */
 
             // ADD TO CART
-
+            else if (cmd == "ADD") {
+                string username;
+                int hit_index;
+                ss >> username;
+                ss >> hit_index;
+                ds.addToCart(username, hit_index, hits);
+            }
+            else if (cmd == "VIEWCART") {
+                string username;
+                ss >> username;
+                ds.viewCart(username);
+            }
+            else if (cmd == "BUYCART") {
+                string username;
+                ss >> username;
+                ds.buyCart(username);
+            }
 
             else {
                 cout << "Unknown command" << endl;

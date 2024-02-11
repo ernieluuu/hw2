@@ -1,10 +1,19 @@
 #include "myDataStore.h"
 
 // constructor
+MyDataStore::MyDataStore() :
+	userSet_(std::set<User*>()),
+	Users_(std::map<std::string, User*>()),
+	productSet_(std::set<Product*>()),
+	Products_(std::map<std::set<std::string>, Product*>()),
+	usersCart_(std::map<std::string, std::queue<Product*>>())
+{
+
+}
 
 // destructor
+MyDataStore::~MyDataStore() {}
 
-/*consider also having a Product* vector for fn's like dump()*/
 void MyDataStore::addProduct(Product* p)
 {
 	std::set<std::string> key_words = p->keywords();
@@ -24,30 +33,72 @@ void MyDataStore::addUser(User* u)
  */
 std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int type)
 {
-	std::vector<Product*> searchResults;
+	/*
+	declaration:
+	std::map<std::set<std::string>, Product*> Products_;
+	*/
+
+	/*search results, initialized to the set of all products*/
+	std::set<Product*> results = productSet_;
+	std::map<std::set<std::string>, Product*>::iterator it; // iterates through products
+	std::vector<std::string>::iterator terms_it; // terms iterator
 
 	if (type == 0)
 	{
-		searchResults = /*todo*/;
+		/*for every term
+			can find it in curr_product?
+				if yes, then push the product (it->second) into my vector
+					then (if it is not the first term) do a set intersection with my results.*/
 
-		// for string in vector...
-		// for string in vector, for product in vector
-		// string, product->keywords
-		// boolean to track if it is always true.
-
-		// 0 1 is the difference between using setIntersect w/ the whole word
-		// // + Products_ or using broken parts of the world + Products_.
-		// setIntersection gets a set of words that and match
-		// convert std::set to vector
-		// --> has to index products, not just the terms in the set.
-		// returns a set<T>
-		// convert it to a vector<Product*>?
+		for (terms_it = terms.begin(); terms_it != terms.end(); ++terms_it) {
+			std::set<Product*> currMatches; // push back current matches here
+			// iterate through the products, and call find to see if can find term in keywords
+			for (it = Products_.begin(); it != Products_.end(); ++it)
+			{
+				std::set<std::string> kw = it->first; // key words
+				//if you can find it in the keywords, push back the product
+				if (kw.find(*terms_it) != kw.end())
+				{
+					currMatches.insert(it->second);
+				}
+			}
+			// update results vector
+			results = setIntersection(results, currMatches);
+		}
 	}
+
+	else if (type == 1)
+	{
+		for (terms_it = terms.begin(); terms_it != terms.end(); ++terms_it) {
+			std::set<Product*> currMatches; // push back current matches here
+			// iterate through the products, and call find to see if can find term in keywords
+			for (it = Products_.begin(); it != Products_.end(); ++it)
+			{
+				std::set<std::string> kw = it->first; // key words
+				//if you can find it in the keywords, push back the product
+				if (kw.find(*terms_it) != kw.end())
+				{
+					currMatches.insert(it->second);
+				}
+			}
+			// update results vector
+			results = setUnion(results, currMatches);
+		}
+	}
+
+	/* convert results from a set to a vector*/
+
+	std::set<Product*>::iterator res_it;
+	std::vector<Product*> searchResults;
+
+	for (res_it = results.begin(); res_it != results.end(); ++res_it)
+	{
+		searchResults.push_back(*res_it);
+	}
+
+	return searchResults;
 }
 
-/**
- * Reproduce the database file from the current Products and User values
- */
 void MyDataStore::dump(std::ostream& ofile)
 {
 	std::set<Product*>::iterator it;
@@ -55,22 +106,11 @@ void MyDataStore::dump(std::ostream& ofile)
 
 	ofile << "<products>" << "\n";
 
+	// just call dump from objects -- note, dump is different from displaystring.
+
 	for (it = productSet_.begin(); it != productSet_.end(); ++it)
 	{
-		//(*it)->dump(ofile);
-		ofile << (*it)->getCategory() << "\n" << (*it)->getName() << "\n"
-			<< (*it)->getPrice() << "\n" << (*it)->getQty() << "\n";
-
-		std::string category = (*it)->getCategory();
-		if (category == "book") {
-			ofile << (*it)->getISBN() << "\n" << (*it)->getAuthor() << "\n";
-		}
-		else if (category == "clothing") {
-			ofile << (*it)->getSize() << "\n" << (*it)->getBrand() << "\n";
-		}
-		else if (category == "movie") {
-			ofile << (*it)->getGenre() << "\n" << (*it)->getRating() << "\n";
-		}
+		(*it)->dump(ofile);
 	}
 
 	ofile << "</products>" << "\n";
