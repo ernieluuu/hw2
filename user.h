@@ -19,8 +19,6 @@ public:
     virtual void dump(std::ostream& os);
 
     // added getter functions
-    std::string getName() const { return name_; }
-    double getBalance() const { return balance_; }
     int getType() const { return type_; }
 
 private:

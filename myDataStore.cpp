@@ -171,8 +171,6 @@ void MyDataStore::viewCart(std::string username)
 	/* if the above queue is a copy, then the following implementation is okay
 	   make sure not to delete the stuff in the queue*/
 
-	int idx = 1;
-
 	while (!items.empty())
 	{
 		(items.front())->displayString();
