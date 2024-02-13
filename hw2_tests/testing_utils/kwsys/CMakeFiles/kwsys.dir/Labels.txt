@@ -1,0 +1,25 @@
+# Source files and their labels
+/work/assignments/hw2/hw2_tests/testing_utils/kwsys/ProcessUNIX.c
+/work/assignments/hw2/hw2_tests/testing_utils/kwsys/EncodingC.c
+/work/assignments/hw2/hw2_tests/testing_utils/kwsys/System.c
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/Configure.h
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/SharedForward.h
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/Process.h
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/Encoding.h
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/System.h
+/work/assignments/hw2/hw2_tests/testing_utils/kwsys/Directory.cxx
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/Directory.hxx
+/work/assignments/hw2/hw2_tests/testing_utils/kwsys/EncodingCXX.cxx
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/Encoding.hxx
+/work/assignments/hw2/hw2_tests/testing_utils/kwsys/RegularExpression.cxx
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/RegularExpression.hxx
+/work/assignments/hw2/hw2_tests/testing_utils/kwsys/SystemTools.cxx
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/SystemTools.hxx
+/work/assignments/hw2/hw2_tests/testing_utils/kwsys/FStream.cxx
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/FStream.hxx
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/Configure.hxx
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/String.hxx
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/hashtable.hxx
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/hash_fun.hxx
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/hash_map.hxx
+/work/assignments/hw2/hw2_tests/testing_utils/generated_headers/kwsys/hash_set.hxx
