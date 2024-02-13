@@ -59,6 +59,19 @@ public:
 
     void buyCart(std::string username);
 
+    /*Debugging -- start*/
+
+    //void printUsers()
+    //{
+    //    std::set<User*>::iterator it;
+    //    for (it = userSet_.begin(); it != userSet_.end(); ++it)
+    //    {
+    //        std::cout << (*it)->getName() << std::endl;
+    //    }
+    //}
+
+    /*Debugging -- end*/
+
 private:
 /*make getter functions to get these if needed*/
 
@@ -76,6 +89,9 @@ std::map<std::set<std::string>, Product*> Products_;
 
 /*where string is the username and there is a queue of Products.*/
 std::map<std::string, std::queue<Product*>> usersCart_;
+
+/*for debugging:*/
+std::vector<Product*> prodVec_;
 
 };
 

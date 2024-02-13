@@ -16,9 +16,22 @@ Book::~Book()
 std::set<std::string> Book::keywords() const
 {
 	std::set<std::string> keywords;
-	keywords.insert(convertToLowercase(this->author_));
-	keywords.insert(convertToLowercase(this->ISBN_));
-	keywords.insert(convertToLowercase(this->name_));
+
+	std::string name = convertToLowercase(this->name_);
+	std::set<std::string> name_words = parseStringToWords(name);
+	// for word in name, push back word -- can call setUnion
+	keywords = setUnion(keywords, name_words);
+
+	std::string author = convertToLowercase(this->author_);
+	std::set<std::string> author_words = parseStringToWords(author);
+
+	keywords = setUnion(keywords, author_words);
+
+	std::string ISBN = convertToLowercase(this->ISBN_);
+	std::set<std::string> ISBN_words = parseStringToWords(ISBN);
+
+	keywords = setUnion(keywords, ISBN_words);
+
 	return keywords;
 }
 
@@ -56,12 +69,13 @@ void Book::dump(std::ostream& os) const
 	quantity
 	category-specific-info*/
 	//os << category_ << "\n" << name_ << "\n" << price_ << "\n" << qty_ << std::endl;
-	os << "book" << std::endl;
-	os << this->name_ << std::endl;
-	os << this->price_ << std::endl;
-	os << this->qty_ << std::endl;
-	os << this->author_ << std::endl;
-	os << this->ISBN_ << std::endl;
+	os << "book" << "\n";
+	os << this->name_ << "\n";
+	//os << std::fixed << std::setprecision(2) << this->price_ << "\n";
+	os << this->price_ << "\n";
+	os << this->qty_ << "\n";
+	os << this->ISBN_ << "\n";
+	os << this->author_ << "\n";
 }
 
 /* choosing pass by copy + return instead of pass by reference so

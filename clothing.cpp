@@ -16,9 +16,22 @@ Clothing::~Clothing()
 std::set<std::string> Clothing::keywords() const
 {
 	std::set<std::string> keywords;
-	keywords.insert(convertToLowercase(this->size_));
-	keywords.insert(convertToLowercase(this->brand_));
-	keywords.insert(convertToLowercase(this->name_));
+
+	std::string name = convertToLowercase(this->name_);
+	std::set<std::string> name_words = parseStringToWords(name);
+	// for word in name, push back word -- can call setUnion
+	keywords = setUnion(keywords, name_words);
+
+	std::string brand = convertToLowercase(this->brand_);
+	std::set<std::string> brand_words = parseStringToWords(brand);
+
+	keywords = setUnion(keywords, brand_words);
+
+	std::string size = convertToLowercase(this->size_);
+	std::set<std::string> size_words = parseStringToWords(size);
+
+	keywords = setUnion(keywords, size_words);
+
 	return keywords;
 }
 
@@ -47,12 +60,12 @@ void Clothing::dump(std::ostream& os) const
 	quantity
 	category-specific-info*/
 	//os << category_ << "\n" << name_ << "\n" << price_ << "\n" << qty_ << std::endl;
-	os << "clothing" << std::endl;
-	os << this->name_ << std::endl;
-	os << this->price_ << std::endl;
-	os << this->qty_ << std::endl;
-	os << this->size_ << std::endl;
-	os << this->brand_ << std::endl;
+	os << "clothing" << "\n";
+	os << this->name_ << "\n";
+	os << this->price_ << "\n";
+	os << this->qty_ << "\n";
+	os << this->size_ << "\n";
+	os << this->brand_ << "\n";
 }
 
 /* choosing pass by copy + return instead of pass by reference so

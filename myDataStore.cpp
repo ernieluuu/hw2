@@ -1,4 +1,4 @@
-#include "myDataStore.h"
+#include "mydatastore.h"
 
 // constructor
 MyDataStore::MyDataStore() :
@@ -12,18 +12,33 @@ MyDataStore::MyDataStore() :
 }
 
 // destructor
-MyDataStore::~MyDataStore() {}
+MyDataStore::~MyDataStore() {
+	for (User* u : userSet_) {
+		delete u;
+	}
+	for (Product* p : productSet_) {
+		delete p;
+	}
+}	
 
 void MyDataStore::addProduct(Product* p)
 {
 	std::set<std::string> key_words = p->keywords();
 	Products_.insert(make_pair(key_words, p));
+	productSet_.insert(p);
+	/*for debugging:*/
+	prodVec_.push_back(p);
 }
 
 void MyDataStore::addUser(User* u)
 {
 	userSet_.insert(u);
-	// push onto the map
+	// TODO: push onto the map!!
+	/*std::map<std::string, User*> Users_;*/
+	Users_.insert(make_pair(u->getName(), u));
+	// initialize usersCart_!!!
+	std::queue<Product*> newQueue;
+	usersCart_.insert(make_pair(u->getName(), newQueue));
 }
 
 /**
@@ -44,7 +59,8 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 	if (type == 0)
 	{
 		/*search results, initialized to the set of all products*/
-		std::set<Product*> results = productSet_;
+		//std::set<Product*> results = productSet_;
+		results = productSet_;
 		/*for every term
 			can find it in curr_product?
 				if yes, then push the product (it->second) into my vector
@@ -123,7 +139,9 @@ void MyDataStore::dump(std::ostream& ofile)
 			<< (*it2)->getBalance() << " " << (*it2)->getType() << "\n";
 	}
 
-	ofile << "</users>" << "\n";
+	ofile << "</users>";
+
+	ofile << "\n";
 
 	return;
 
@@ -136,11 +154,11 @@ just add to the Product* queue associated with the username
 use the username as a key to find the product* queue (in Products_)
 then go to that (-->second?) and push_back.*/
 
-	Product* hit = hits[hit_index];
+	Product* hit = hits[hit_index-1];
 	std::map<std::string, std::queue<Product*>>::iterator it = this->usersCart_.find(username);
 	
 	if (it == usersCart_.end()) {
-		std::cout << "Invalid username" << std::endl;
+		std::cout << "Invalid request\n"; // FIXME: 'username' change to 'request'
 		return;
 	}
 
@@ -171,9 +189,12 @@ void MyDataStore::viewCart(std::string username)
 	/* if the above queue is a copy, then the following implementation is okay
 	   make sure not to delete the stuff in the queue*/
 
+	int item_count = 1;
 	while (!items.empty())
 	{
-		(items.front())->displayString();
+		std::cout << "Item " << item_count++ << "\n";
+		std::string cart = (items.front())->displayString();
+		std::cout << cart << std::endl;
 		items.pop();
 	}
 
@@ -223,6 +244,7 @@ void MyDataStore::buyCart(std::string username)
 			currUser->deductAmount(items.front()->getPrice());
 			items.front()->subtractQty(1);
 			items.pop();
+			(it->second).pop(); // removes from user's cart
 		}
 	}
 }

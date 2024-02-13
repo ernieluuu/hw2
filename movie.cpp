@@ -15,10 +15,25 @@ Movie::~Movie()
 
 std::set<std::string> Movie::keywords() const
 {
+	/*have to insert parseStringToWords() instead of the whole string!!!*/
+
 	std::set<std::string> keywords;
-	keywords.insert(convertToLowercase(this->genre_));
-	keywords.insert(convertToLowercase(this->rating_));
-	keywords.insert(convertToLowercase(this->name_));
+
+	std::string name = convertToLowercase(this->name_);
+	std::set<std::string> name_words = parseStringToWords(name);
+	// for word in name, push back word -- can call setUnion
+	keywords = setUnion(keywords, name_words);
+
+	std::string genre = convertToLowercase(this->genre_);
+	std::set<std::string> genre_words = parseStringToWords(genre);
+
+	keywords = setUnion(keywords, genre_words);
+
+	std::string rating = convertToLowercase(this->rating_);
+	std::set<std::string> rating_words = parseStringToWords(rating);
+
+	keywords = setUnion(keywords, rating_words);
+
 	return keywords;
 }
 
@@ -47,12 +62,12 @@ void Movie::dump(std::ostream& os) const
 	quantity
 	category-specific-info*/
 	//os << category_ << "\n" << name_ << "\n" << price_ << "\n" << qty_ << std::endl;
-	os << "movie" << std::endl;
-	os << this->name_ << std::endl;
-	os << this->price_ << std::endl;
-	os << this->qty_ << std::endl;
-	os << this->genre_ << std::endl;
-	os << this->rating_ << std::endl;
+	os << "movie" << "\n";
+	os << this->name_ << "\n";
+	os << this->price_ << "\n";
+	os << this->qty_ << "\n";
+	os << this->genre_ << "\n";
+	os << this->rating_ << "\n";
 }
 
 /* choosing pass by copy + return instead of pass by reference so
