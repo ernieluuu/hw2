@@ -1,6 +1,6 @@
 *.o
 amazon
-#hw2_tests/
+hw2_tests/
 .vs/
 x64/
 hw2.sln

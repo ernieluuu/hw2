@@ -1,4 +1,0 @@
-# Hashes of file build rules.
-3e8f579a05a35f684523910909ed66c6 /work/assignments/hw2/amazon
-206415552c0e46c9a58fcb8c29715442 CMakeFiles/check
-945d502dcba5534cd1edbbc0ec093c19 amazon_tests/CMakeFiles/run_make_amazon
